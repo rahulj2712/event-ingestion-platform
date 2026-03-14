@@ -46,7 +46,7 @@ Default credentials (from docker-compose):
 - password: `app`
 - database: `eventsdb`
 
-## Design notes (what to say in interviews)
+## Design notes
 
 ### At-least-once + duplicates
 We commit Kafka offsets **after** the DB write. If the consumer crashes after writing but before committing, the same message can be re-delivered => duplicates.
