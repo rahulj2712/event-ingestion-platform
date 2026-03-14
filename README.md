@@ -14,10 +14,10 @@ A clean-room demo of a production-style ingestion pattern:
 ```mermaid
 flowchart LR
   C[Client] -->|POST /events| API[api-service]
-  API -->|produce: topic=events (key=imsi)| K[(Kafka)]
-  K -->|consume (group=events-consumer)| CON[consumer-service]
-  CON -->|idempotent upsert| PG[(Postgres)]
-  CON -->|on permanent failure| DLQ[(Kafka topic: events.dlq)]
+  API -->|produce to topic: events, key: imsi| K[(Kafka)]
+  K -->|consume, group: events-consumer| CON[consumer-service]
+  CON -->|idempotent insert| PG[(Postgres)]
+  CON -->|publish on failure| DLQ[(topic: events.dlq)]
 ```
 
 ## Run locally
